@@ -46,3 +46,18 @@ complete -W "NSGlobalDomain" defaults;
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+
+# Add local gems to path
+export PATH="/Users/kuzin/.gem/ruby/2.3.0/bin:$PATH";
+
+# QT Fix
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH";
+
+# HOMEBREW
+export PATH="/usr/local/sbin:$PATH";
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm";
+
+# SBIN BACKUP
+export PATH="/usr/local/sbin:$PATH";
