@@ -50,13 +50,9 @@ brew install gpg
 
 Then re-run `./scripts/asdf-setup.sh`.
 
-## 5. Optional: one Node stack only
+## 5. Node: asdf + Homebrew (both are fine)
 
-You use **asdf** for Node (see `asdf/.tool-versions`). To avoid two `node` installs:
-
-```bash
-brew uninstall node   # optional; keeps PATH simpler
-```
+**asdf** provides the Node version in `asdf/.tool-versions` for your shell. **Homebrew Node** is often still installed because other formulae depend on it. In zsh, asdf shims are preferred on `PATH`, so keeping both is normal. Only run `brew uninstall node` if you know you do not need it for other brews.
 
 ## 6. Editors / AI apps
 
