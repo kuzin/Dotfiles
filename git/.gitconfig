@@ -1,0 +1,38 @@
+[user]
+  name = Kuzin
+  email = mike@kuzn.me
+
+[init]
+  defaultBranch = main
+
+[pull]
+  rebase = false
+
+[rebase]
+  autoStash = true
+
+[core]
+  excludesFile = ~/.gitignore_global
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+  colorMoved = default
+
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch
+  ci = commit
+  lg = log --oneline --decorate --graph
+  last = log -1 HEAD --stat
