@@ -33,6 +33,18 @@ elif [ -x /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
+# Remove stale PATH entries left by old Node/Yarn installs.
+if [ ! -d "${HOME}/.config/yarn/global/node_modules/.bin" ]; then
+  path=(${path:#${HOME}/.config/yarn/global/node_modules/.bin})
+fi
+path=(${path:#${HOME}/.nvm/versions/node/*/bin})
+export PATH
+
+# Prefer asdf shims (matches ~/.tool-versions) over a second Homebrew node install.
+if [ -d "${HOME}/.asdf/shims" ]; then
+  export PATH="${HOME}/.asdf/shims:${PATH}"
+fi
+
 # Tool integrations
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
@@ -50,3 +62,7 @@ fi
 # History search with arrow keys
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+
+if [ "${TERM:-}" != "dumb" ] && command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi

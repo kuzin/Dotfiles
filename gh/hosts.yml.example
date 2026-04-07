@@ -1,0 +1,6 @@
+# Copy to ~/.config/gh/hosts.yml and run `gh auth login`.
+# Do not commit real auth tokens.
+github.com:
+  user: kuzin
+  oauth_token: YOUR_TOKEN_HERE
+  git_protocol: https

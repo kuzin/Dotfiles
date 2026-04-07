@@ -46,13 +46,26 @@ main() {
   link_file "${ROOT_DIR}/zsh/.zprofile" "${HOME}/.zprofile"
   link_file "${ROOT_DIR}/git/.gitconfig" "${HOME}/.gitconfig"
   link_file "${ROOT_DIR}/git/.gitignore_global" "${HOME}/.gitignore_global"
+  link_file "${ROOT_DIR}/asdf/.tool-versions" "${HOME}/.tool-versions"
+  mkdir -p "${HOME}/.config"
+  link_file "${ROOT_DIR}/starship/starship.toml" "${HOME}/.config/starship.toml"
+  mkdir -p "${HOME}/.config/gh"
+  link_file "${ROOT_DIR}/gh/config.yml" "${HOME}/.config/gh/config.yml"
+  mkdir -p "${HOME}/.ssh"
+  link_file "${ROOT_DIR}/ssh/config" "${HOME}/.ssh/config"
+  chmod 600 "${HOME}/.ssh/config"
+  mkdir -p "${HOME}/.cursor"
+  link_file "${ROOT_DIR}/cursor/argv.json" "${HOME}/.cursor/argv.json"
 
   echo
   echo "Bootstrap complete."
   if [ -d "$BACKUP_DIR" ]; then
     echo "Backup created at: $BACKUP_DIR"
   fi
+  echo "New Mac? Read: ${ROOT_DIR}/NEW_MACHINE.md"
   echo "Open a new terminal and run: source ~/.zshrc && dotfiles_doctor"
+  echo "For npm defaults, copy template: cp ${ROOT_DIR}/npm/.npmrc.example ${HOME}/.npmrc"
+  echo "For GitHub CLI auth, run: gh auth login"
   echo "Review staged macOS tweaks with: ./macos/defaults.sh --review"
 }
 

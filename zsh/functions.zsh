@@ -19,6 +19,11 @@ dotfiles_doctor() {
     "$HOME/.zprofile"
     "$HOME/.gitconfig"
     "$HOME/.gitignore_global"
+    "$HOME/.tool-versions"
+    "$HOME/.config/starship.toml"
+    "$HOME/.config/gh/config.yml"
+    "$HOME/.ssh/config"
+    "$HOME/.cursor/argv.json"
   )
   for l in "${links[@]}"; do
     if [ -L "$l" ]; then

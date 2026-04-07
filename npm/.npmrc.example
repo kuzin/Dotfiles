@@ -1,0 +1,9 @@
+# Copy to ~/.npmrc and set your values.
+# Do not commit real tokens to git.
+
+init-author-name=Kuzin
+init-author-email=mike@kuzn.me
+init-author-url=http://kuzn.me
+
+# Example auth token pattern:
+# //registry.npmjs.org/:_authToken=${NPM_TOKEN}
