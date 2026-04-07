@@ -18,17 +18,13 @@ Dock:
 - Auto-hide Dock
 - Reduce auto-hide delay
 
-Screenshots:
-- Save to ~/Screenshots
-- Use PNG format
+Screenshots are intentionally not changed (location/format stay as-is).
 
 Nothing is applied in --review mode.
 EOF
 }
 
 apply_defaults() {
-  mkdir -p "${HOME}/Screenshots"
-
   # Keyboard
   defaults write NSGlobalDomain KeyRepeat -int 2
   defaults write NSGlobalDomain InitialKeyRepeat -int 15
@@ -42,13 +38,8 @@ apply_defaults() {
   defaults write com.apple.dock autohide -bool true
   defaults write com.apple.dock autohide-delay -float 0
 
-  # Screenshots
-  defaults write com.apple.screencapture location -string "${HOME}/Screenshots"
-  defaults write com.apple.screencapture type -string "png"
-
   killall Finder >/dev/null 2>&1 || true
   killall Dock >/dev/null 2>&1 || true
-  killall SystemUIServer >/dev/null 2>&1 || true
 
   echo "macOS defaults applied."
 }
