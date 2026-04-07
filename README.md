@@ -20,6 +20,8 @@ make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 
 **Fresh Mac or OS reinstall:** use the full checklist in [NEW_MACHINE.md](NEW_MACHINE.md) (Xcode CLT, Homebrew, secrets, `gh auth`, etc.).
 
+**Ongoing cleanup & repo hygiene:** [MAINTENANCE.md](MAINTENANCE.md) (safe commands, folder cleanup—**Dropbox excluded**, best practices).
+
 ---
 
 ## What you get
@@ -35,6 +37,7 @@ make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 | Cursor | `cursor/argv.json` → `~/.cursor/argv.json` |
 | npm | `npm/.npmrc.example` — copy to `~/.npmrc`, add token locally |
 | macOS | `macos/defaults.sh` — review with `--review`, apply with `--apply` only if you want |
+| Docs | [NEW_MACHINE.md](NEW_MACHINE.md) (fresh Mac), [MAINTENANCE.md](MAINTENANCE.md) (cleanup & repo upkeep) |
 
 Other paths in `bootstrap.sh`, `Makefile`, and `scripts/` tie it together.
 

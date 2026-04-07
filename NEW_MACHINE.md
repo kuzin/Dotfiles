@@ -5,7 +5,7 @@ Use this after a clean macOS install (or new machine). Goal: **clone dotfiles �
 ## 1. System prerequisites
 
 1. Install **Xcode Command Line Tools**: `xcode-select --install`
-2. Install **Homebrew**: https://brew.sh/
+2. Install **Homebrew**: [https://brew.sh/](https://brew.sh/)
 3. Clone this repo, e.g. `git clone … ~/Code/dotfiles`
 
 ## 2. Apply dotfiles
@@ -26,13 +26,15 @@ make doctor
 
 Copy or recreate on the new Mac:
 
-| Item | How |
-|------|-----|
-| SSH private keys | `~/.ssh/` (e.g. `github`) + keep `ssh/config` from repo |
-| GPG keys | `~/.gnupg/` (export/import securely) |
-| `gh` login | `gh auth login` or `make gh-auth` |
-| npm token | merge into `~/.npmrc` (use `npm/.npmrc.example` as base) |
-| `.netrc`, `.aws/`, Docker creds | copy only if you still use those tools |
+
+| Item                            | How                                                      |
+| ------------------------------- | -------------------------------------------------------- |
+| SSH private keys                | `~/.ssh/` (e.g. `github`) + keep `ssh/config` from repo  |
+| GPG keys                        | `~/.gnupg/` (export/import securely)                     |
+| `gh` login                      | `gh auth login` or `make gh-auth`                        |
+| npm token                       | merge into `~/.npmrc` (use `npm/.npmrc.example` as base) |
+| `.netrc`, `.aws/`, Docker creds | copy only if you still use those tools                   |
+
 
 ## 4. asdf (Ruby + Node from `.tool-versions`)
 
@@ -57,7 +59,7 @@ Then re-run `./scripts/asdf-setup.sh`.
 ## 6. Editors / AI apps
 
 - **Cursor / VS Code**: reinstall extensions (not stored in this repo).
-- **`.cursor/`**, **`.claude/`**, **`.copilot/`**: local state/cache — do not sync wholesale; let apps recreate.
+- `**.cursor/`**, `**.claude/`**, `**.copilot/**`: local state/cache — do not sync wholesale; let apps recreate.
 
 ## 7. macOS preferences
 
@@ -67,3 +69,4 @@ Review (no obligation to apply):
 make macos-review
 # ./macos/defaults.sh --apply   # only if you want them
 ```
+
