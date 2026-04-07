@@ -46,6 +46,8 @@ Secrets and machine-only files: `~/.npmrc` (tokens), `~/.ssh/*` keys, `~/.config
 
 ## Part 2 — Cleaning folders on your Mac (manual process)
 
+**Layout & naming (Desktop, Documents, no loose files):** [FOLDER_CONVENTIONS.md](FOLDER_CONVENTIONS.md)
+
 **Rule: do not delete, move, rename, or bulk-modify anything under Dropbox.**
 
 Treat as **off limits** unless you are deliberately working *inside* the Dropbox app or their official UI:
