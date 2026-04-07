@@ -2,6 +2,8 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BACKUP_ROOT="${HOME}/.dotfiles-backups"
+BACKUP_DIR="${BACKUP_ROOT}/$(date +%Y%m%d-%H%M%S)"
 
 ensure_homebrew() {
   if command -v brew >/dev/null 2>&1; then
@@ -21,8 +23,15 @@ link_file() {
   local src="$1"
   local dst="$2"
 
+  if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
+    echo "Already linked $dst -> $src"
+    return
+  fi
+
   if [ -e "$dst" ] || [ -L "$dst" ]; then
-    rm -rf "$dst"
+    mkdir -p "$BACKUP_DIR"
+    mv "$dst" "${BACKUP_DIR}/$(basename "$dst")"
+    echo "Backed up $dst -> ${BACKUP_DIR}/$(basename "$dst")"
   fi
 
   ln -s "$src" "$dst"
@@ -40,6 +49,9 @@ main() {
 
   echo
   echo "Bootstrap complete."
+  if [ -d "$BACKUP_DIR" ]; then
+    echo "Backup created at: $BACKUP_DIR"
+  fi
   echo "Open a new terminal and run: source ~/.zshrc && dotfiles_doctor"
   echo "Review staged macOS tweaks with: ./macos/defaults.sh --review"
 }

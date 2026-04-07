@@ -36,3 +36,18 @@
   ci = commit
   lg = log --oneline --decorate --graph
   last = log -1 HEAD --stat
+
+[includeIf "gitdir:~/Code/bs-*/"]
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/Code/bfs-emails/"]
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/Code/dev-env/"]
+  path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/Code/kuz-automations/"]
+  path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Code/slack-image-download/"]
+  path = ~/.gitconfig-personal

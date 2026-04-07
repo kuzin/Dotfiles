@@ -22,6 +22,9 @@ setopt INC_APPEND_HISTORY
 autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' use-cache on
 
 # Homebrew shell env (Apple Silicon + Intel fallback)
 if [ -x /opt/homebrew/bin/brew ]; then
@@ -43,3 +46,7 @@ fi
 
 # Local machine overrides (untracked)
 [ -f "${HOME}/.dotfiles.local.zsh" ] && source "${HOME}/.dotfiles.local.zsh"
+
+# History search with arrow keys
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search

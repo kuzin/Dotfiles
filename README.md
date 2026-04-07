@@ -17,12 +17,13 @@ Personal macOS + terminal setup, managed in GitHub-friendly structure.
 ## What bootstrap does
 1. Verifies Homebrew exists
 2. Installs CLI tools from `Brewfile`
-3. Symlinks:
+3. Backs up any existing conflicting files to `~/.dotfiles-backups/<timestamp>/`
+4. Symlinks:
    - `zsh/.zshrc` -> `~/.zshrc`
    - `zsh/.zprofile` -> `~/.zprofile`
    - `git/.gitconfig` -> `~/.gitconfig`
    - `git/.gitignore_global` -> `~/.gitignore_global`
-4. Optionally sources local, untracked overrides from `~/.dotfiles.local.zsh`
+5. Optionally sources local, untracked overrides from `~/.dotfiles.local.zsh`
 
 ## macOS defaults review workflow
 1. Preview staged changes:
@@ -40,6 +41,18 @@ Open a new shell and run:
 source ~/.zshrc
 dotfiles_doctor
 ```
+
+Or use the repo helper:
+```bash
+./doctor.sh
+```
+
+## Git identity split
+- Base config is in `git/.gitconfig`
+- Path-specific overrides:
+  - `~/.gitconfig-work` (linked from `git/.gitconfig-work`)
+  - `~/.gitconfig-personal` (linked from `git/.gitconfig-personal`)
+- Work profile auto-applies for selected directories under `~/Code`
 
 ## GitHub remote
 Suggested remote:
