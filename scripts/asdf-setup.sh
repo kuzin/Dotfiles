@@ -20,4 +20,11 @@ fi
 cd "$HOME"
 asdf install
 
-echo "asdf install complete. Open a new shell and run: node -v && ruby -v"
+# Node ships Corepack (Yarn, pnpm). Enable once per install so shims exist after NVM→asdf.
+NODE_ROOT="$(cd "$HOME" && asdf where nodejs 2>/dev/null || true)"
+if [ -n "${NODE_ROOT}" ] && [ -x "${NODE_ROOT}/bin/corepack" ]; then
+  "${NODE_ROOT}/bin/corepack" enable
+  asdf reshim nodejs
+fi
+
+echo "asdf install complete. Open a new shell and run: node -v && ruby -v && command -v yarn"

@@ -37,6 +37,8 @@ fi
 if [ ! -d "${HOME}/.config/yarn/global/node_modules/.bin" ]; then
   path=(${path:#${HOME}/.config/yarn/global/node_modules/.bin})
 fi
+# Drop nvm bins so asdf/Homebrew node wins. Reinstall CLI tools (e.g. yarn) under asdf:
+#   corepack enable && asdf reshim nodejs   # or: npm i -g yarn && asdf reshim nodejs
 path=(${path:#${HOME}/.nvm/versions/node/*/bin})
 export PATH
 
