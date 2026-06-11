@@ -47,6 +47,9 @@ if [ -d "${HOME}/.asdf/shims" ]; then
   export PATH="${HOME}/.asdf/shims:${PATH}"
 fi
 
+# User-local binaries
+export PATH="$HOME/.local/bin:$PATH"
+
 # Tool integrations
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
