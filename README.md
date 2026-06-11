@@ -82,6 +82,25 @@ All hooks are no-ops when the local file is absent.
 
 **Claude Code:** bare `claude` always uses the cloud. Local Ollama is opt-in per machine via `cl` / `claude-local` / `claude-pick`, defined in `~/.dotfiles.local.zsh` (template: `zsh/.dotfiles.local.example.zsh`).
 
+<details>
+<summary>Local Ollama notes & troubleshooting</summary>
+
+- Quick reachability check: `curl http://studio-ai.local:11434` → `Ollama is running`.
+- Anthropic-format probe (proves the `/v1/messages` shim works):
+
+  ```bash
+  curl -sS -X POST http://studio-ai.local:11434/v1/messages \
+    -H "Content-Type: application/json" -H "x-api-key: ollama" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{"model":"gemma4:latest","max_tokens":40,"messages":[{"role":"user","content":"say pong"}]}'
+  ```
+
+- If `claude-local` hangs with no response, restart Ollama on the Mac Studio. Claude Code calls `/v1/messages/count_tokens`, which Ollama doesn't support and which can degrade it under load ([ollama#13949](https://github.com/ollama/ollama/issues/13949)); [ollama-anthropic-shim](https://github.com/hilyin/ollama-anthropic-shim) is the long-term fallback.
+- Ollama's Anthropic compatibility is partial: no `tool_choice`, no prompt caching, no batches/citations/PDFs ([compat doc](https://docs.ollama.com/api/anthropic-compatibility)). Ollama recommends ≥64K context for Claude Code; raise small models with `OLLAMA_CONTEXT_LENGTH` or per-model `num_ctx`.
+- Local models are noticeably weaker than real Claude on multi-file reasoning and long agentic loops — use them for quick edits and offline work; use bare `claude` for anything substantial.
+
+</details>
+
 ---
 
 ## Bootstrap behavior
