@@ -1,6 +1,6 @@
 # dotfiles
 
-macOS shell and CLI setup meant to be **cloned once on a new machine**, bootstrapped with Homebrew, then verified with a small health check.
+Shell and CLI setup for two Macs — the MacBook and **AISTUDIO** (Mac Studio). Cloned once per machine, bootstrapped with Homebrew, verified with a small health check. Shared config lives here; anything machine-specific lives in untracked local files (see [Two machines & local overrides](#two-machines--local-overrides)).
 
 ---
 
@@ -18,8 +18,6 @@ make doctor
 make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 ```
 
-**Fresh Mac or OS reinstall:** use the full checklist in [NEW_MACHINE.md](NEW_MACHINE.md) (Xcode CLT, Homebrew, secrets, `gh auth`, etc.).
-
 **Ongoing cleanup & repo hygiene:** [MAINTENANCE.md](MAINTENANCE.md) (safe commands, folder cleanup—**Dropbox excluded**, best practices). **Where to put files:** [FOLDER_CONVENTIONS.md](FOLDER_CONVENTIONS.md).
 
 ---
@@ -28,18 +26,15 @@ make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 
 | Area | In this repo |
 |------|----------------|
-| Shell | `zsh/` → `~/.zshrc`, `~/.zprofile`; optional `~/.dotfiles.local.zsh` (untracked) |
-| Git | `git/.gitconfig`, `git/.gitignore_global` |
+| Shell | `zsh/` → `~/.zshrc`, `~/.zprofile`; per-machine `~/.dotfiles.local.zsh` (untracked) |
+| Git | `git/.gitconfig`, `git/.gitignore_global`; per-machine `~/.gitconfig.local` (untracked) |
 | Runtimes | `asdf/.tool-versions` → `~/.tool-versions` |
 | Prompt | `starship/starship.toml` → `~/.config/starship.toml` |
 | GitHub CLI | `gh/config.yml`; auth via `gh auth login` (see `gh/hosts.yml.example`) |
-| SSH | `ssh/config` → `~/.ssh/config` (keys stay local only) |
+| SSH | `ssh/config` → `~/.ssh/config`; per-machine `~/.ssh/config.local`; keys stay local only |
 | Cursor | `cursor/argv.json` → `~/.cursor/argv.json` |
 | npm | `npm/.npmrc.example` — copy to `~/.npmrc`, add token locally |
-| macOS | `macos/defaults.sh` — review with `--review`, apply with `--apply` only if you want |
-| Docs | [NEW_MACHINE.md](NEW_MACHINE.md) (fresh Mac), [MAINTENANCE.md](MAINTENANCE.md) (cleanup & repo upkeep), [FOLDER_CONVENTIONS.md](FOLDER_CONVENTIONS.md) (Desktop/Documents layout) |
-
-Other paths in `bootstrap.sh`, `Makefile`, and `scripts/` tie it together.
+| Docs | [MAINTENANCE.md](MAINTENANCE.md) (cleanup & repo upkeep), [FOLDER_CONVENTIONS.md](FOLDER_CONVENTIONS.md) (Desktop/Documents layout) |
 
 ---
 
@@ -49,11 +44,42 @@ Other paths in `bootstrap.sh`, `Makefile`, and `scripts/` tie it together.
 |---------|---------|
 | `make bootstrap` | `brew bundle` + symlink managed configs |
 | `make doctor` | Check tools + symlinks |
-| `make asdf-setup` | Add asdf plugins + `asdf install` |
-| `make npmrc` | Copy `npm/.npmrc.example` → `~/.npmrc` |
-| `make gh-auth` | `gh auth login` |
-| `make macos-review` | Print planned defaults (no changes) |
-| `make macos-apply` | Apply `macos/defaults.sh` |
+| `make asdf-setup` | Add asdf plugins + `asdf install` (+ Corepack for Yarn) |
+
+---
+
+## Fresh machine
+
+1. `xcode-select --install`
+2. Install Homebrew: [brew.sh](https://brew.sh/)
+3. `git clone git@github.com:<you>/dotfiles.git ~/Code/dotfiles`
+4. `cd ~/Code/dotfiles && ./bootstrap.sh`
+5. New terminal: `make doctor`
+6. `make asdf-setup` — Ruby + Node per `asdf/.tool-versions`
+7. `cp zsh/.dotfiles.local.example.zsh ~/.dotfiles.local.zsh`, then edit for this machine
+8. `cp npm/.npmrc.example ~/.npmrc` (add token locally)
+9. `gh auth login`
+10. Bring [secrets](#secrets-never-commit) from 1Password / the old machine
+
+---
+
+## Two machines & local overrides
+
+This repo is shared by the MacBook and AISTUDIO (`studio-ai.local`, serves Ollama on `:11434`).
+
+**Rule of thumb: anything with a hostname, IP, volume path, or username in it goes in an untracked local file — never in shared config.**
+
+| Local file (untracked) | Hooked from | Holds |
+|---|---|---|
+| `~/.dotfiles.local.zsh` | sourced by `zsh/.zshrc` | machine env (`OLLAMA_MODELS`, Android SDK), `claude-local` / `claude-pick` / `cl`, extra PATH |
+| `~/.gitconfig.local` | `[include]` at end of `git/.gitconfig` (local wins) | per-machine git identity / overrides |
+| `~/.ssh/config.local` | `Include` at top of `ssh/config` (local wins) | per-machine hosts |
+| `~/.npmrc` | copied from `npm/.npmrc.example` | npm defaults + tokens |
+| `~/.config/gh/hosts.yml` | created by `gh auth login` | GitHub auth |
+
+All hooks are no-ops when the local file is absent.
+
+**Claude Code:** bare `claude` always uses the cloud. Local Ollama is opt-in per machine via `cl` / `claude-local` / `claude-pick`, defined in `~/.dotfiles.local.zsh` (template: `zsh/.dotfiles.local.example.zsh`).
 
 ---
 
@@ -88,20 +114,9 @@ Large app state under `~/.cursor/`, `~/.claude/`, `~/.copilot/` is not synced he
 
 ---
 
-## macOS defaults
-
-Keyboard, Finder, and Dock tweaks live in `macos/defaults.sh`. **Screenshots are not changed.**
-
-```bash
-make macos-review    # describe what --apply would do
-make macos-apply       # only when you explicitly want them
-```
-
----
-
 ## Git identity
 
-Edit `git/.gitconfig` in this repo (it is symlinked to `~/.gitconfig`).
+Edit `git/.gitconfig` in this repo (it is symlinked to `~/.gitconfig`). Per-machine identity or overrides go in `~/.gitconfig.local`.
 
 ---
 

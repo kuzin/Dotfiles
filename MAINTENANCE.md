@@ -40,7 +40,7 @@ Only remove versions you are sure nothing still uses.
 
 ### Do not commit
 
-Secrets and machine-only files: `~/.npmrc` (tokens), `~/.ssh/*` keys, `~/.config/gh/hosts.yml`, `.netrc`, `.aws`, Docker login data, etc. Use [NEW_MACHINE.md](NEW_MACHINE.md) when migrating.
+Secrets and machine-only files: `~/.npmrc` (tokens), `~/.ssh/*` keys, `~/.config/gh/hosts.yml`, `.netrc`, `.aws`, Docker login data, etc. See the [Fresh machine](README.md#fresh-machine) steps in the README when migrating.
 
 ---
 
@@ -104,4 +104,4 @@ brew cleanup
 npm cache clean --force
 ```
 
-For a full new machine: [NEW_MACHINE.md](NEW_MACHINE.md).
+For a full new machine: [Fresh machine](README.md#fresh-machine) in the README.
