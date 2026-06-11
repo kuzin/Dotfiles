@@ -4,6 +4,8 @@ brew "delta"
 brew "eza"
 brew "fd"
 brew "fzf"
+brew "gh"
+brew "git"
 brew "libyaml" # required to build asdf Ruby (psych extension)
 brew "ripgrep"
 brew "starship"

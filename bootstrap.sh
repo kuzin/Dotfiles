@@ -54,8 +54,10 @@ main() {
   mkdir -p "${HOME}/.ssh"
   link_file "${ROOT_DIR}/ssh/config" "${HOME}/.ssh/config"
   chmod 600 "${HOME}/.ssh/config"
-  mkdir -p "${HOME}/.cursor"
-  link_file "${ROOT_DIR}/cursor/argv.json" "${HOME}/.cursor/argv.json"
+  mkdir -p "${HOME}/.config/ghostty"
+  link_file "${ROOT_DIR}/ghostty/config" "${HOME}/.config/ghostty/config"
+  mkdir -p "${HOME}/Library/Application Support/Code/User"
+  link_file "${ROOT_DIR}/vscode/settings.json" "${HOME}/Library/Application Support/Code/User/settings.json"
 
   echo
   echo "Bootstrap complete."

@@ -1,6 +1,6 @@
 dotfiles_doctor() {
   local missing=0
-  local bins=(brew git fzf zoxide bat eza rg fd delta)
+  local bins=(brew git gh fzf zoxide bat eza rg fd delta)
 
   echo "Checking required tools..."
   for b in "${bins[@]}"; do
@@ -23,7 +23,8 @@ dotfiles_doctor() {
     "$HOME/.config/starship.toml"
     "$HOME/.config/gh/config.yml"
     "$HOME/.ssh/config"
-    "$HOME/.cursor/argv.json"
+    "$HOME/.config/ghostty/config"
+    "$HOME/Library/Application Support/Code/User/settings.json"
   )
   for l in "${links[@]}"; do
     if [ -L "$l" ]; then

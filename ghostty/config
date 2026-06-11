@@ -1,0 +1,6 @@
+# Ghostty config — managed by dotfiles (symlinked to ~/.config/ghostty/config).
+# Reference: https://ghostty.org/docs/config
+# Everything commented = stock behavior. Uncomment to customize:
+# font-family = JetBrains Mono
+# font-size = 13
+# theme = catppuccin-macchiato

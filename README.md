@@ -32,7 +32,8 @@ make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 | Prompt | `starship/starship.toml` → `~/.config/starship.toml` |
 | GitHub CLI | `gh/config.yml`; auth via `gh auth login` (see `gh/hosts.yml.example`) |
 | SSH | `ssh/config` → `~/.ssh/config`; per-machine `~/.ssh/config.local`; keys stay local only |
-| Cursor | `cursor/argv.json` → `~/.cursor/argv.json` |
+| Ghostty | `ghostty/config` → `~/.config/ghostty/config` |
+| VS Code | `vscode/settings.json` → `~/Library/Application Support/Code/User/settings.json` |
 | npm | `npm/.npmrc.example` — copy to `~/.npmrc`, add token locally |
 | Docs | [MAINTENANCE.md](MAINTENANCE.md) (cleanup & repo upkeep), [FOLDER_CONVENTIONS.md](FOLDER_CONVENTIONS.md) (Desktop/Documents layout) |
 
@@ -110,7 +111,7 @@ Bring these to a new Mac outside git (1Password, old machine export, or regenera
 - `~/.config/gh/hosts.yml` (use `gh auth login`)  
 - `~/.netrc`, `~/.aws/`, Docker credentials if you use them  
 
-Large app state under `~/.cursor/`, `~/.claude/`, `~/.copilot/` is not synced here; reinstall extensions and let apps recreate caches.
+Large app state under `~/.claude/`, `~/.vscode/`, etc. is not synced here; reinstall extensions and let apps recreate caches.
 
 ---
 
