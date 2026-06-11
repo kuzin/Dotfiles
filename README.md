@@ -44,7 +44,8 @@ make asdf-setup      # installs Ruby + Node per asdf/.tool-versions
 | Command | Purpose |
 |---------|---------|
 | `make bootstrap` | `brew bundle` + symlink managed configs |
-| `make doctor` | Check tools + symlinks |
+| `make doctor` | Check tools + symlinks + local config |
+| `make sync` | `git pull` + bootstrap + doctor — routine update on either machine |
 | `make asdf-setup` | Add asdf plugins + `asdf install` (+ Corepack for Yarn) |
 
 ---

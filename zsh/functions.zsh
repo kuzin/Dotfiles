@@ -35,6 +35,15 @@ dotfiles_doctor() {
     fi
   done
 
+  echo
+  echo "Checking machine-local config..."
+  if [ -f "$HOME/.dotfiles.local.zsh" ]; then
+    echo "  [ok] ~/.dotfiles.local.zsh"
+  else
+    echo "  [missing] ~/.dotfiles.local.zsh (cp zsh/.dotfiles.local.example.zsh ~/.dotfiles.local.zsh)"
+    missing=1
+  fi
+
   if [ "$missing" -eq 0 ]; then
     echo
     echo "dotfiles_doctor: healthy"

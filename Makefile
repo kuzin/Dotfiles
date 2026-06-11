@@ -1,9 +1,14 @@
-.PHONY: bootstrap doctor asdf-setup
+.PHONY: bootstrap doctor sync asdf-setup
 
 bootstrap:
 	./bootstrap.sh
 
 doctor:
+	./doctor.sh
+
+sync:
+	git pull --ff-only
+	./bootstrap.sh
 	./doctor.sh
 
 asdf-setup:
