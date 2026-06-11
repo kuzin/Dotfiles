@@ -62,11 +62,13 @@ main() {
   if [ -d "$BACKUP_DIR" ]; then
     echo "Backup created at: $BACKUP_DIR"
   fi
-  echo "New Mac? Read: ${ROOT_DIR}/NEW_MACHINE.md"
   echo "Open a new terminal and run: source ~/.zshrc && dotfiles_doctor"
-  echo "For npm defaults, copy template: cp ${ROOT_DIR}/npm/.npmrc.example ${HOME}/.npmrc"
-  echo "For GitHub CLI auth, run: gh auth login"
-  echo "Review staged macOS tweaks with: ./macos/defaults.sh --review"
+  echo
+  echo "Optional one-time setup:"
+  echo "  Runtimes:     make asdf-setup   # Ruby + Node per ~/.tool-versions, Corepack for Yarn"
+  echo "  npm:          cp ${ROOT_DIR}/npm/.npmrc.example ${HOME}/.npmrc"
+  echo "  GitHub CLI:   gh auth login"
+  echo "  Local config: cp ${ROOT_DIR}/zsh/.dotfiles.local.example.zsh ${HOME}/.dotfiles.local.zsh"
 }
 
 main "$@"
