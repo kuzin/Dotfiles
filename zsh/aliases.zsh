@@ -1,6 +1,6 @@
 # Better defaults
 alias ls='eza --group-directories-first --icons=auto'
-alias ll='eza -lah --group-directories-first --icons=auto'
+alias ll='eza -lah --group-directories-first --icons=auto --git'
 alias lt='eza -T --level=2 --group-directories-first --icons=auto'
 alias cat='bat --style=plain --paging=never'
 

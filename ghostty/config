@@ -4,13 +4,24 @@
 theme = catppuccin-macchiato
 font-family = JetBrains Mono
 font-size = 13
+cursor-style = bar
+
+# Tighter chrome
+macos-titlebar-style = tabs
+window-padding-x = 6
+window-padding-y = 6
+window-padding-balance = true
 
 # Quality of life
 window-save-state = always
 copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
 mouse-hide-while-typing = true
 
+# Quick terminal from anywhere with cmd+` (macOS asks for accessibility access once)
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# Splits ship with defaults: cmd+d right, cmd+shift+d down, cmd+alt+arrows to navigate.
+
 # Uncomment to taste:
-# macos-titlebar-style = tabs
 # background-opacity = 0.97
-# cursor-style = bar

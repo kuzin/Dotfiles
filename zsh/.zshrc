@@ -57,8 +57,18 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # fzf keybindings + completion (ctrl-r history, ctrl-t files, alt-c cd)
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :200 {}'"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
 if command -v fzf >/dev/null 2>&1; then
   source <(fzf --zsh)
+fi
+
+# Fish-style inline suggestions from history (accept with right-arrow)
+if [ -f "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # Aliases / functions
@@ -74,4 +84,9 @@ bindkey '^[[B' down-line-or-search
 
 if [ "${TERM:-}" != "dumb" ] && command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
+fi
+
+# Command syntax highlighting — must stay the last thing sourced
+if [ -f "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
