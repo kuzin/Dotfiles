@@ -28,6 +28,19 @@
 
 [diff]
   colorMoved = default
+  algorithm = histogram
+
+[push]
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[branch]
+  sort = -committerdate
+
+[rerere]
+  enabled = true
 
 [alias]
   st = status -sb

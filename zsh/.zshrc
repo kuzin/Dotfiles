@@ -13,6 +13,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
@@ -55,7 +56,10 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
-[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+# fzf keybindings + completion (ctrl-r history, ctrl-t files, alt-c cd)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
 
 # Aliases / functions
 [ -f "${DOTFILES_DIR}/zsh/aliases.zsh" ] && source "${DOTFILES_DIR}/zsh/aliases.zsh"

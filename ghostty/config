@@ -1,6 +1,16 @@
 # Ghostty config — managed by dotfiles (symlinked to ~/.config/ghostty/config).
-# Reference: https://ghostty.org/docs/config
-# Everything commented = stock behavior. Uncomment to customize:
-# font-family = JetBrains Mono
-# font-size = 13
-# theme = catppuccin-macchiato
+# Reference: https://ghostty.org/docs/config — reload with cmd+shift+, or restart.
+
+theme = catppuccin-macchiato
+font-family = JetBrains Mono
+font-size = 13
+
+# Quality of life
+window-save-state = always
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+
+# Uncomment to taste:
+# macos-titlebar-style = tabs
+# background-opacity = 0.97
+# cursor-style = bar
