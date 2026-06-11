@@ -36,3 +36,8 @@
   ci = commit
   lg = log --oneline --decorate --graph
   last = log -1 HEAD --stat
+
+# Per-machine overrides (untracked; missing file is ignored).
+# Last include wins for single-valued keys, so local overrides shared.
+[include]
+  path = ~/.gitconfig.local

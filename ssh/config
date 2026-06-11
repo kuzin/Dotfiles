@@ -1,3 +1,7 @@
+# Per-machine overrides (untracked; missing file is skipped).
+# ssh uses first-match-wins, so local settings override shared ones.
+Include ~/.ssh/config.local
+
 Host *
   AddKeysToAgent yes
   UseKeychain yes
